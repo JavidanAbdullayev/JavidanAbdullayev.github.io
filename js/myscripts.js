@@ -371,6 +371,7 @@ $(document).ready(function(){
 
 // Function to read bib and display publications
 $(document).ready(function(){
+	console.log('hereeeeeee')
 	$.get('publis/my_publis.bib', function(data) {
    	res = bibtexParse.toJSON(data);
 	
