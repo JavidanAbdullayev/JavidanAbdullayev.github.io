@@ -373,6 +373,8 @@ $(document).ready(function(){
 $(document).ready(function(){
 	console.log('hereeeeeee')
 	$.get('publis/my_publis.bib', function(data) {
+	console.log('22222222222222')
+	
    	res = bibTexParse.toJSON(data);
 	
 	cptIntArticle=0;
@@ -446,7 +448,7 @@ $(document).ready(function(){
 				if (res[i].entryTags.hasOwnProperty('number')){
 					num_string = '(' + res[i].entryTags.number + ') ';
 				}
-				
+
 				res[i].entryTags.pages = res[i].entryTags.pages.replace("--", "-")
 				publi_string = authors_string + '.<br>' + res[i].entryTags.title + '.<br><i>' + res[i].entryTags.journal + ', Vol. ' + res[i].entryTags.volume + num_string + ', pp. ' + res[i].entryTags.pages + ', ' + res[i].entryTags.year +'.</i><br>' + link_string;
 				$("#int_journals").append('<tr id="' + res[i].citationKey + '" class="entry"><td style="width:40px;padding-right:1em;">[' + cptIntArticle + ']</td><td>' + publi_string + '</td></tr>');
