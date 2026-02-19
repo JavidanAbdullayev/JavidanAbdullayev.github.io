@@ -385,7 +385,7 @@ $(document).ready(function(){
 		authors = res[i].entryTags.author.split(' and ');
 		for (a=0; a<authors.length-1; a++){
 			names = authors[a].split(', ');
-			if (names[0] == 'Devanne'){
+			if (names[0] == 'Abdullayev'){
 				authors_string = authors_string + '<B>' + names[1] + ' ' + names[0] + '</B>, ';
 			}else{
 				authors_string = authors_string + names[1] + ' ' + names[0] + ', ';
@@ -393,7 +393,7 @@ $(document).ready(function(){
 		}
 		authors_string = authors_string.substring(0, authors_string.length - 2);
 		names = authors[authors.length-1].split(', ');
-		if (names[0] == 'Devanne'){
+		if (names[0] == 'Abdullayev'){
 			authors_string = authors_string + ' and ' + '<B>' + names[1] + ' ' + names[0] + '</B>';
 		}else{
 			authors_string = authors_string + ' and ' + names[1] + ' ' + names[0];
