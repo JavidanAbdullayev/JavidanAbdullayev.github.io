@@ -371,7 +371,7 @@ $(document).ready(function(){
 
 // Function to read bib and display publications
 $(document).ready(function(){
-	$.get('publis/mypublis.bib', function(data) {
+	$.get('publis/my_publis.bib', function(data) {
    	res = bibtexParse.toJSON(data);
 	
 	cptIntArticle=0;
