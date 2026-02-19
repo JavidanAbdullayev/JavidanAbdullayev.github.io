@@ -1,373 +1,373 @@
 // Function to load profil from json
-$(document).ready(function() {
-	$.getJSON("jsons/profil.json", function(data){
-		$("#myname").append(data.name);
-		$("#mytitle").append(data.title);
-		$("#img-profil").attr("src", data.image);
-		$("#abstract").append(data.abstract);
-		for (var i=0; i<data.keywords.length; i++){
-			if (i<data.keywords.length-1){
-				$("#keywords").append(data.keywords[i] + ', ');
-			}else{
-				$("#keywords").append(data.keywords[i] + '.');
-			}
-		}
-		$("#address").append(data.contact.employer + '<br>' + data.contact.street + '<br>' + data.contact.city + '<br>');
-		$("#email").append(data.contact.email);
-		$("#phone").append(data.contact.phone);
-		// External links if exist
-		var idstring;
-		$.each(data.links, function(key,val){
-			idstring='#' + key;
-			$(idstring+ ' a').attr("href", val);
-			$(idstring).show();
-		});
-	});
-});
+// $(document).ready(function() {
+// 	$.getJSON("jsons/profil.json", function(data){
+// 		$("#myname").append(data.name);
+// 		$("#mytitle").append(data.title);
+// 		$("#img-profil").attr("src", data.image);
+// 		$("#abstract").append(data.abstract);
+// 		for (var i=0; i<data.keywords.length; i++){
+// 			if (i<data.keywords.length-1){
+// 				$("#keywords").append(data.keywords[i] + ', ');
+// 			}else{
+// 				$("#keywords").append(data.keywords[i] + '.');
+// 			}
+// 		}
+// 		$("#address").append(data.contact.employer + '<br>' + data.contact.street + '<br>' + data.contact.city + '<br>');
+// 		$("#email").append(data.contact.email);
+// 		$("#phone").append(data.contact.phone);
+// 		// External links if exist
+// 		var idstring;
+// 		$.each(data.links, function(key,val){
+// 			idstring='#' + key;
+// 			$(idstring+ ' a').attr("href", val);
+// 			$(idstring).show();
+// 		});
+// 	});
+// });
 
 // Function to load news from json
-$(document).ready(function() {
-    $.getJSON("jsons/news.json", function(data){
-    	var numToshow=5;
-    	var newsdict = data.news;
-    	for (var i=0; i< newsdict.length; i++){
-    		if (i<numToshow){
-    			$("#list-news").append( "<li style=\"display: list-item;\"><B>" + newsdict[i].date + ":</B> " + newsdict[i].content + "</li>" );
-    		}else{
-    			$("#list-news").append( "<li style=\"display: none;\"><B>" + newsdict[i].date + ":</B> " + newsdict[i].content + "</li>" );
-    		}
+// $(document).ready(function() {
+//     $.getJSON("jsons/news.json", function(data){
+//     	var numToshow=5;
+//     	var newsdict = data.news;
+//     	for (var i=0; i< newsdict.length; i++){
+//     		if (i<numToshow){
+//     			$("#list-news").append( "<li style=\"display: list-item;\"><B>" + newsdict[i].date + ":</B> " + newsdict[i].content + "</li>" );
+//     		}else{
+//     			$("#list-news").append( "<li style=\"display: none;\"><B>" + newsdict[i].date + ":</B> " + newsdict[i].content + "</li>" );
+//     		}
     		
-    	}
+//     	}
 
-    	// + or -
-    	size_li = $("#list-news li").length;
-    	x = numToshow;
-    	$('#see-more').click(function () {
-	        x= (x+1 <= size_li) ? x+5 : size_li;
-	        $('#list-news li:lt('+x+')').show();
-	    });
-	    $('#see-less').click(function () {
-	        x=(x-5<0) ? 5 : x-5;
-	        x= (x<= 5) ? 5 : x;
-	        $('#list-news li').not(':lt('+x+')').hide();
-	    });
-    });
-});
+//     	// + or -
+//     	size_li = $("#list-news li").length;
+//     	x = numToshow;
+//     	$('#see-more').click(function () {
+// 	        x= (x+1 <= size_li) ? x+5 : size_li;
+// 	        $('#list-news li:lt('+x+')').show();
+// 	    });
+// 	    $('#see-less').click(function () {
+// 	        x=(x-5<0) ? 5 : x-5;
+// 	        x= (x<= 5) ? 5 : x;
+// 	        $('#list-news li').not(':lt('+x+')').hide();
+// 	    });
+//     });
+// });
 
 
 
 // Function to load bio from json
-$(document).ready(function(){
-	$.getJSON("jsons/bio.json", function(data){
-		// background
-		for (var i=0; i<data.background.length; i++){
-			employ_string='';
-			for (e=0; e<data.background[i].employer.length; e++){
-				if (e>0){
-					if (e==(data.background[i].employer.length-1)){
-						employ_string = employ_string + ' and ';
-					}else{
-						employ_string = employ_string + ', ';
-					}
-				}
-				employ_string = employ_string + '<a href="' + data.background[i].employer_links[e] + '" target="_blank"> ' + data.background[i].employer[e] + '</a>';
-			}
-			$("#background").append('<li><B>' + data.background[i].date + ':</B> ' + data.background[i].position + ' at ' + employ_string + '</li>');
-		}
+// $(document).ready(function(){
+// 	$.getJSON("jsons/bio.json", function(data){
+// 		// background
+// 		for (var i=0; i<data.background.length; i++){
+// 			employ_string='';
+// 			for (e=0; e<data.background[i].employer.length; e++){
+// 				if (e>0){
+// 					if (e==(data.background[i].employer.length-1)){
+// 						employ_string = employ_string + ' and ';
+// 					}else{
+// 						employ_string = employ_string + ', ';
+// 					}
+// 				}
+// 				employ_string = employ_string + '<a href="' + data.background[i].employer_links[e] + '" target="_blank"> ' + data.background[i].employer[e] + '</a>';
+// 			}
+// 			$("#background").append('<li><B>' + data.background[i].date + ':</B> ' + data.background[i].position + ' at ' + employ_string + '</li>');
+// 		}
 
-		// education
-		for (var i=0; i<data.education.length; i++){
-			school_string='';
-			for (e=0; e<data.education[i].school.length; e++){
-				if (e>0){
-					if (e==(data.education[i].school.length-1)){
-						school_string = school_string + ' and ';
-					}else{
-						school_string = school_string + ', ';
-					}
-				}
-				school_string = school_string + '<a href="' + data.education[i].school_links[e] + '" target="_blank"> ' + data.education[i].school[e] + '</a>';
-			}
-			$("#education").append('<li><B>' + data.education[i].date + ':</B> ' + data.education[i].degree + ' at ' + school_string + '</li>');
-		}
+// 		// education
+// 		for (var i=0; i<data.education.length; i++){
+// 			school_string='';
+// 			for (e=0; e<data.education[i].school.length; e++){
+// 				if (e>0){
+// 					if (e==(data.education[i].school.length-1)){
+// 						school_string = school_string + ' and ';
+// 					}else{
+// 						school_string = school_string + ', ';
+// 					}
+// 				}
+// 				school_string = school_string + '<a href="' + data.education[i].school_links[e] + '" target="_blank"> ' + data.education[i].school[e] + '</a>';
+// 			}
+// 			$("#education").append('<li><B>' + data.education[i].date + ':</B> ' + data.education[i].degree + ' at ' + school_string + '</li>');
+// 		}
 
-		// responsabilities
-		for (var i=0; i<data.responsabilities.length; i++){
-			$("#responsabilities").append('<li><B>'+ data.responsabilities[i].date + ': </B>' + data.responsabilities[i].resp + '</li>');
-		}
-		// reviewer
-		for (var i=0; i<data.reviewer.length; i++){
-			$("#reviewer").append('<li>'+ data.reviewer[i] + '</li>');
-		}
+// 		// responsabilities
+// 		for (var i=0; i<data.responsabilities.length; i++){
+// 			$("#responsabilities").append('<li><B>'+ data.responsabilities[i].date + ': </B>' + data.responsabilities[i].resp + '</li>');
+// 		}
+// 		// reviewer
+// 		for (var i=0; i<data.reviewer.length; i++){
+// 			$("#reviewer").append('<li>'+ data.reviewer[i] + '</li>');
+// 		}
 
-		// committee
-		for (var i=0; i<data.committee.length; i++){
-			$("#committee").append('<li>'+ data.committee[i] + '</li>');
-		}
-	});
-});
+// 		// committee
+// 		for (var i=0; i<data.committee.length; i++){
+// 			$("#committee").append('<li>'+ data.committee[i] + '</li>');
+// 		}
+// 	});
+// });
 
 // Function to load projects from json
-$(document).ready(function(){
-	$.getJSON("jsons/projects.json", function(data){
-		//current
-		for (var i=0; i<data.current.length; i++){
-			partner_string='';
-			if (data.current[i].partners.length>0){
-				partner_string = ' In collaboration with ';
-				for (e=0; e<data.current[i].partners.length; e++){
-					if (e>0){
-						if (e==(data.current[i].partners.length-1)){
-							partner_string = partner_string + ' and ';
-						}else{
-							partner_string = partner_string + ', ';
-						}
-					}
-					partner_string = partner_string + '<a href="' + data.current[i].partners_links[e] + '" target="_blank">' + data.current[i].partners[e] + '</a>';
-				}
-				partner_string = partner_string + '.';
-			}
-			if (data.current[i].link != ''){
-				projet_string='<B><a href="' + data.current[i].link + '" target="_blank">' + data.current[i].name + '</a> (' + data.current[i].date + '):</B> ' + data.current[i].topic + '. ';
-			}else{
-				projet_string='<B><a href="#research">' + data.current[i].name + '</a> (' + data.current[i].date + '):</B> ' + data.current[i].topic + '. ';
-			}
-			role_string='';
-			if (data.current[i].role != ''){
-				role_string = '<br><B>Role</B>: ' + data.current[i].role + '.'; 
-			}
-			funding_string='';
-			if (data.current[i].fundings != ''){
-				funding_string = ' <B>Fundings</B>: ' + data.current[i].fundings + '.'; 
-			}
-			$("#projects-current").append('<li>' + projet_string + role_string + partner_string + funding_string + '</li>');
-		}
+// $(document).ready(function(){
+// 	$.getJSON("jsons/projects.json", function(data){
+// 		//current
+// 		for (var i=0; i<data.current.length; i++){
+// 			partner_string='';
+// 			if (data.current[i].partners.length>0){
+// 				partner_string = ' In collaboration with ';
+// 				for (e=0; e<data.current[i].partners.length; e++){
+// 					if (e>0){
+// 						if (e==(data.current[i].partners.length-1)){
+// 							partner_string = partner_string + ' and ';
+// 						}else{
+// 							partner_string = partner_string + ', ';
+// 						}
+// 					}
+// 					partner_string = partner_string + '<a href="' + data.current[i].partners_links[e] + '" target="_blank">' + data.current[i].partners[e] + '</a>';
+// 				}
+// 				partner_string = partner_string + '.';
+// 			}
+// 			if (data.current[i].link != ''){
+// 				projet_string='<B><a href="' + data.current[i].link + '" target="_blank">' + data.current[i].name + '</a> (' + data.current[i].date + '):</B> ' + data.current[i].topic + '. ';
+// 			}else{
+// 				projet_string='<B><a href="#research">' + data.current[i].name + '</a> (' + data.current[i].date + '):</B> ' + data.current[i].topic + '. ';
+// 			}
+// 			role_string='';
+// 			if (data.current[i].role != ''){
+// 				role_string = '<br><B>Role</B>: ' + data.current[i].role + '.'; 
+// 			}
+// 			funding_string='';
+// 			if (data.current[i].fundings != ''){
+// 				funding_string = ' <B>Fundings</B>: ' + data.current[i].fundings + '.'; 
+// 			}
+// 			$("#projects-current").append('<li>' + projet_string + role_string + partner_string + funding_string + '</li>');
+// 		}
 
-		// past
-		for (var i=0; i<data.past.length; i++){
-			partner_string='';
-			if (data.past[i].partners.length>0){
-				partner_string = '(';
-				for (e=0; e<data.past[i].partners.length; e++){
-					if (e>0){
-						if (e==(data.past[i].partners.length-1)){
-							partner_string = partner_string + ' and ';
-						}else{
-							partner_string = partner_string + ', ';
-						}
-					}
-					partner_string = partner_string + '<a href="' + data.past[i].partners_links[e] + '" target="_blank">' + data.past[i].partners[e] + '</a>';
-				}
-			}
-			if (data.past[i].link != ''){
-				projet_string='<B><a href="' + data.past[i].link + '" target="_blank">' + data.past[i].name + '</a> (' + data.past[i].date + '):</B> ' + data.past[i].topic + '. ';
-			}else{
-				projet_string='<B><a href="#research">' + data.past[i].name + '</a> (' + data.past[i].date + '):</B> ' + data.past[i].topic + ' ';
-			}
-			funding_string='';
-			if (data.past[i].fundings != ''){
-				funding_string = ' <B>Fundings</B>: ' + data.past[i].fundings + '.'; 
-			}
-			$("#projects-past").append('<li>' + projet_string + partner_string + ').' + funding_string + '</li>');
-		}
-	});
-});
+// 		// past
+// 		for (var i=0; i<data.past.length; i++){
+// 			partner_string='';
+// 			if (data.past[i].partners.length>0){
+// 				partner_string = '(';
+// 				for (e=0; e<data.past[i].partners.length; e++){
+// 					if (e>0){
+// 						if (e==(data.past[i].partners.length-1)){
+// 							partner_string = partner_string + ' and ';
+// 						}else{
+// 							partner_string = partner_string + ', ';
+// 						}
+// 					}
+// 					partner_string = partner_string + '<a href="' + data.past[i].partners_links[e] + '" target="_blank">' + data.past[i].partners[e] + '</a>';
+// 				}
+// 			}
+// 			if (data.past[i].link != ''){
+// 				projet_string='<B><a href="' + data.past[i].link + '" target="_blank">' + data.past[i].name + '</a> (' + data.past[i].date + '):</B> ' + data.past[i].topic + '. ';
+// 			}else{
+// 				projet_string='<B><a href="#research">' + data.past[i].name + '</a> (' + data.past[i].date + '):</B> ' + data.past[i].topic + ' ';
+// 			}
+// 			funding_string='';
+// 			if (data.past[i].fundings != ''){
+// 				funding_string = ' <B>Fundings</B>: ' + data.past[i].fundings + '.'; 
+// 			}
+// 			$("#projects-past").append('<li>' + projet_string + partner_string + ').' + funding_string + '</li>');
+// 		}
+// 	});
+// });
 
 // Function to load students from json
-$(document).ready(function(){
-	$.getJSON("jsons/students.json", function(data){
-		//phd
-		for (var i=0; i<data.phd.length; i++){
-			partner_string='';
-			if (data.phd[i].partners.length>0){
-				if (data.phd[i].hasOwnProperty('enterprise')){
-					enterprise_string = '<br>In collaboration with <a href="' + data.phd[i].enterprise_link + '" target="_blank">' + data.phd[i].enterprise + '</a>, ';
-					partner_string = enterprise_string + 'co-advised with ';
-				}
-				else{
-					partner_string = '<br>Co-advised with ';
-				}
-				for (e=0; e<data.phd[i].partners.length; e++){
-					if (e>0){
-						if (e==(data.phd[i].partners.length-1)){
-							partner_string = partner_string + ' and ';
-						}else{
-							partner_string = partner_string + ', ';
-						}
-					}
-					partner_string = partner_string + '<a href="' + data.phd[i].partners_links[e] + '" target="_blank">' + data.phd[i].partners[e] + '</a>';
-				}
-			}
-			if (data.phd[i].link != ''){
-				student_string='<B><a href="' + data.phd[i].link + '" target="_blank">' + data.phd[i].name + '</a></B>' + ' <B>(' + data.phd[i].date + '):</B> ' + data.phd[i].topic;
-			}else{
-				student_string='<B><a href="#research">' + data.phd[i].name + '</a></B>' + ' <B>(' + data.phd[i].date + '):</B> ' + data.phd[i].topic;
-			}
-			if (data.phd[i].project != ''){
-				student_string = student_string + ' (' + data.phd[i].project + ' project).';
-			}
-			else{
-				student_string = student_string + '.';
-			}
-			$("#students-phd").append('<li>' + student_string + partner_string + '.</li>');
-		}
-		//graduated
-		for (var i=0; i<data.graduated.length; i++){
-			partner_string='';
-			if (data.graduated[i].partners.length>0){
-				partner_string = 'Co-advised with ';
-				for (e=0; e<data.graduated[i].partners.length; e++){
-					if (e>0){
-						if (e==(data.graduated[i].partners.length-1)){
-							partner_string = partner_string + ' and ';
-						}else{
-							partner_string = partner_string + ', ';
-						}
-					}
-					partner_string = partner_string + '<a href="' + data.graduated[i].partners_links[e] + '" target="_blank">' + data.graduated[i].partners[e] + '</a>';
-				}
-			}
-			if (data.graduated[i].new_position != ''){
-				new_position_string = 'Now ' + data.graduated[i].new_position + ' at <a href="' + data.graduated[i].new_compagny_link + '" target="_blank">' + data.graduated[i].new_compagny + '</a>';
-			}
-			else{
-				new_position_string = '';
-			}
-			if (data.graduated[i].link != ''){
-				student_string='<B><a href="' + data.graduated[i].link + '" target="_blank">' + data.graduated[i].name + '</a></B>' + ' <B>(PhD ' + data.graduated[i].date + '),</B> ' + partner_string + '. ' + new_position_string;
-			}else{
-				student_string='<B><a href="#research">' + data.graduated[i].name + '</a></B>' + ' <B>(PhD ' + data.graduated[i].date + '),</B> ' + partner_string + '. ' + new_position_string;
-			}
-			$("#graduated-phd").append('<li>' + student_string + '.</li>');
-		}
-		// postdocs
-		for (var i=0; i<data.postdoc.length; i++){
-			if (data.postdoc[i].partners.length>0){
-				partner_string='<br>Co-supervised with ';
-				for (e=0; e<data.postdoc[i].partners.length; e++){
-					if (e>0){
-						if (e==(data.postdoc[i].partners.length-1)){
-							partner_string = partner_string + ' and ';
-						}else{
-							partner_string = partner_string + ', ';
-						}
-					}
-					partner_string = partner_string + '<a href="' + data.postdoc[i].partners_links[e] + '" target="_blank">' + data.postdoc[i].partners[e] + '</a>';
-				}
-				partner_string = partner_string + '.';
-			}else{
-				partner_string="";
-			}
-			if (data.postdoc[i].link != ''){
-				student_string='<B><a href="' + data.postdoc[i].link + '" target="_blank">' + data.postdoc[i].name + '</a></B>' + ' <B>(' + data.postdoc[i].date + '):</B> ' + data.postdoc[i].position + ' working on ' + data.postdoc[i].topic;
-			}else{
-				student_string='<B><a href="#research">' + data.postdoc[i].name + '</a></B>' + ' <B>(' + data.postdoc[i].date + '):</B> ' + data.postdoc[i].position + ' working on ' + data.postdoc[i].topic ;
-			}
-			if (data.postdoc[i].project != ''){
-				student_string = student_string + ' (' + data.postdoc[i].project + ' project).';
-			}
-			else{
-				student_string = student_string + '.';
-			}
-			$("#students-postdocs").append('<li>' + student_string + partner_string + '</li>');
-		}
-		// engineers/masters
-		if (data.master.length > 0){
-			for (var i=0; i<data.master.length; i++){
-				if (data.master[i].partners.length>0){
-					partner_string='<br>Co-supervised with ';
-					for (e=0; e<data.master[i].partners.length; e++){
-						if (e>0){
-							if (e==(data.master[i].partners.length-1)){
-								partner_string = partner_string + ' and ';
-							}else{
-								partner_string = partner_string + ', ';
-							}
-						}
-						partner_string = partner_string + '<a href="' + data.master[i].partners_links[e] + '" target="_blank">' + data.master[i].partners[e] + '</a>';
-					}
-				}else{
-					partner_string="";
-				}
-				if (data.master[i].link != ''){
-					student_string='<B><a href="' + data.master[i].link + '" target="_blank">' + data.master[i].name + '</a></B>' + ' <B>(' + data.master[i].date + '):</B> ' + data.master[i].topic + '.';
-				}else{
-					student_string='<B><a href="#research">' + data.master[i].name + '</a></B>' + ' <B>(' + data.master[i].date + '):</B> ' + data.master[i].topic + '.';
-				}
-				$("#students-masters").append('<li>' + student_string + partner_string + '.</li>');
-			}
-		}
-		else{
-			$("#master-students").hide();
-		}
-		// alumnis
-		if (data.alumni.length > 0){
-			for (var i=0; i<data.alumni.length; i++){
-				if (data.alumni[i].link != ''){
-					student_string='<B><a href="' + data.alumni[i].link + '" target="_blank">' + data.alumni[i].name + '</a></B>' + ' <B>(' + data.alumni[i].date + '):</B> ' + data.alumni[i].position;
-				}else{
-					student_string='<B><a href="#research">' + data.alumni[i].name + '</a></B>' + ' <B>(' + data.alumni[i].date + '):</B> ' + data.alumni[i].position;
-				}
-				$("#students-alumnis").append('<li>' + student_string + '.</li>');
-			}
-		}
-		var hidden_alumnis= true;
-		$('#students-alumnis').hide();
-		$('#see-alumnis').click(function () {
-	        if (hidden_alumnis){
-	        	$('#students-alumnis').show();
-	        	$('#see-alumnis').html('<i class="fas fa-search-minus"></i>');
-	        	hidden_alumnis = false;
-	        }else{
-	        	$('#students-alumnis').hide();
-	        	$('#see-alumnis').html('<i class="fas fa-search-plus"></i>');
-	        	hidden_alumnis = true;
-	        }
-	    });
-	});
-});
+// $(document).ready(function(){
+// 	$.getJSON("jsons/students.json", function(data){
+// 		//phd
+// 		for (var i=0; i<data.phd.length; i++){
+// 			partner_string='';
+// 			if (data.phd[i].partners.length>0){
+// 				if (data.phd[i].hasOwnProperty('enterprise')){
+// 					enterprise_string = '<br>In collaboration with <a href="' + data.phd[i].enterprise_link + '" target="_blank">' + data.phd[i].enterprise + '</a>, ';
+// 					partner_string = enterprise_string + 'co-advised with ';
+// 				}
+// 				else{
+// 					partner_string = '<br>Co-advised with ';
+// 				}
+// 				for (e=0; e<data.phd[i].partners.length; e++){
+// 					if (e>0){
+// 						if (e==(data.phd[i].partners.length-1)){
+// 							partner_string = partner_string + ' and ';
+// 						}else{
+// 							partner_string = partner_string + ', ';
+// 						}
+// 					}
+// 					partner_string = partner_string + '<a href="' + data.phd[i].partners_links[e] + '" target="_blank">' + data.phd[i].partners[e] + '</a>';
+// 				}
+// 			}
+// 			if (data.phd[i].link != ''){
+// 				student_string='<B><a href="' + data.phd[i].link + '" target="_blank">' + data.phd[i].name + '</a></B>' + ' <B>(' + data.phd[i].date + '):</B> ' + data.phd[i].topic;
+// 			}else{
+// 				student_string='<B><a href="#research">' + data.phd[i].name + '</a></B>' + ' <B>(' + data.phd[i].date + '):</B> ' + data.phd[i].topic;
+// 			}
+// 			if (data.phd[i].project != ''){
+// 				student_string = student_string + ' (' + data.phd[i].project + ' project).';
+// 			}
+// 			else{
+// 				student_string = student_string + '.';
+// 			}
+// 			$("#students-phd").append('<li>' + student_string + partner_string + '.</li>');
+// 		}
+// 		//graduated
+// 		for (var i=0; i<data.graduated.length; i++){
+// 			partner_string='';
+// 			if (data.graduated[i].partners.length>0){
+// 				partner_string = 'Co-advised with ';
+// 				for (e=0; e<data.graduated[i].partners.length; e++){
+// 					if (e>0){
+// 						if (e==(data.graduated[i].partners.length-1)){
+// 							partner_string = partner_string + ' and ';
+// 						}else{
+// 							partner_string = partner_string + ', ';
+// 						}
+// 					}
+// 					partner_string = partner_string + '<a href="' + data.graduated[i].partners_links[e] + '" target="_blank">' + data.graduated[i].partners[e] + '</a>';
+// 				}
+// 			}
+// 			if (data.graduated[i].new_position != ''){
+// 				new_position_string = 'Now ' + data.graduated[i].new_position + ' at <a href="' + data.graduated[i].new_compagny_link + '" target="_blank">' + data.graduated[i].new_compagny + '</a>';
+// 			}
+// 			else{
+// 				new_position_string = '';
+// 			}
+// 			if (data.graduated[i].link != ''){
+// 				student_string='<B><a href="' + data.graduated[i].link + '" target="_blank">' + data.graduated[i].name + '</a></B>' + ' <B>(PhD ' + data.graduated[i].date + '),</B> ' + partner_string + '. ' + new_position_string;
+// 			}else{
+// 				student_string='<B><a href="#research">' + data.graduated[i].name + '</a></B>' + ' <B>(PhD ' + data.graduated[i].date + '),</B> ' + partner_string + '. ' + new_position_string;
+// 			}
+// 			$("#graduated-phd").append('<li>' + student_string + '.</li>');
+// 		}
+// 		// postdocs
+// 		for (var i=0; i<data.postdoc.length; i++){
+// 			if (data.postdoc[i].partners.length>0){
+// 				partner_string='<br>Co-supervised with ';
+// 				for (e=0; e<data.postdoc[i].partners.length; e++){
+// 					if (e>0){
+// 						if (e==(data.postdoc[i].partners.length-1)){
+// 							partner_string = partner_string + ' and ';
+// 						}else{
+// 							partner_string = partner_string + ', ';
+// 						}
+// 					}
+// 					partner_string = partner_string + '<a href="' + data.postdoc[i].partners_links[e] + '" target="_blank">' + data.postdoc[i].partners[e] + '</a>';
+// 				}
+// 				partner_string = partner_string + '.';
+// 			}else{
+// 				partner_string="";
+// 			}
+// 			if (data.postdoc[i].link != ''){
+// 				student_string='<B><a href="' + data.postdoc[i].link + '" target="_blank">' + data.postdoc[i].name + '</a></B>' + ' <B>(' + data.postdoc[i].date + '):</B> ' + data.postdoc[i].position + ' working on ' + data.postdoc[i].topic;
+// 			}else{
+// 				student_string='<B><a href="#research">' + data.postdoc[i].name + '</a></B>' + ' <B>(' + data.postdoc[i].date + '):</B> ' + data.postdoc[i].position + ' working on ' + data.postdoc[i].topic ;
+// 			}
+// 			if (data.postdoc[i].project != ''){
+// 				student_string = student_string + ' (' + data.postdoc[i].project + ' project).';
+// 			}
+// 			else{
+// 				student_string = student_string + '.';
+// 			}
+// 			$("#students-postdocs").append('<li>' + student_string + partner_string + '</li>');
+// 		}
+// 		// engineers/masters
+// 		if (data.master.length > 0){
+// 			for (var i=0; i<data.master.length; i++){
+// 				if (data.master[i].partners.length>0){
+// 					partner_string='<br>Co-supervised with ';
+// 					for (e=0; e<data.master[i].partners.length; e++){
+// 						if (e>0){
+// 							if (e==(data.master[i].partners.length-1)){
+// 								partner_string = partner_string + ' and ';
+// 							}else{
+// 								partner_string = partner_string + ', ';
+// 							}
+// 						}
+// 						partner_string = partner_string + '<a href="' + data.master[i].partners_links[e] + '" target="_blank">' + data.master[i].partners[e] + '</a>';
+// 					}
+// 				}else{
+// 					partner_string="";
+// 				}
+// 				if (data.master[i].link != ''){
+// 					student_string='<B><a href="' + data.master[i].link + '" target="_blank">' + data.master[i].name + '</a></B>' + ' <B>(' + data.master[i].date + '):</B> ' + data.master[i].topic + '.';
+// 				}else{
+// 					student_string='<B><a href="#research">' + data.master[i].name + '</a></B>' + ' <B>(' + data.master[i].date + '):</B> ' + data.master[i].topic + '.';
+// 				}
+// 				$("#students-masters").append('<li>' + student_string + partner_string + '.</li>');
+// 			}
+// 		}
+// 		else{
+// 			$("#master-students").hide();
+// 		}
+// 		// alumnis
+// 		if (data.alumni.length > 0){
+// 			for (var i=0; i<data.alumni.length; i++){
+// 				if (data.alumni[i].link != ''){
+// 					student_string='<B><a href="' + data.alumni[i].link + '" target="_blank">' + data.alumni[i].name + '</a></B>' + ' <B>(' + data.alumni[i].date + '):</B> ' + data.alumni[i].position;
+// 				}else{
+// 					student_string='<B><a href="#research">' + data.alumni[i].name + '</a></B>' + ' <B>(' + data.alumni[i].date + '):</B> ' + data.alumni[i].position;
+// 				}
+// 				$("#students-alumnis").append('<li>' + student_string + '.</li>');
+// 			}
+// 		}
+// 		var hidden_alumnis= true;
+// 		$('#students-alumnis').hide();
+// 		$('#see-alumnis').click(function () {
+// 	        if (hidden_alumnis){
+// 	        	$('#students-alumnis').show();
+// 	        	$('#see-alumnis').html('<i class="fas fa-search-minus"></i>');
+// 	        	hidden_alumnis = false;
+// 	        }else{
+// 	        	$('#students-alumnis').hide();
+// 	        	$('#see-alumnis').html('<i class="fas fa-search-plus"></i>');
+// 	        	hidden_alumnis = true;
+// 	        }
+// 	    });
+// 	});
+// });
 
 // Function to load teaching from json
-$(document).ready(function(){
-	$.getJSON("jsons/teaching.json", function(data){
-		// institutions
-		for (var i=0; i<data.institutions.length; i++){
-			school_string=data.institutions[i].school;
-			if (data.institutions[i].link != ''){
-				school_string = '<a href="' + data.institutions[i].link + '" target="blank_">' + school_string + '</a>';
-			}
-			if (data.institutions[i].info != ''){
-				school_string = school_string + ' (' + data.institutions[i].info + ')';
-			}
-			$("#institutions").append('<li><B>' + data.institutions[i].date + ':</B> ' + school_string + ', ' + data.institutions[i].department + '.</li>');
-		}
+// $(document).ready(function(){
+// 	$.getJSON("jsons/teaching.json", function(data){
+// 		// institutions
+// 		for (var i=0; i<data.institutions.length; i++){
+// 			school_string=data.institutions[i].school;
+// 			if (data.institutions[i].link != ''){
+// 				school_string = '<a href="' + data.institutions[i].link + '" target="blank_">' + school_string + '</a>';
+// 			}
+// 			if (data.institutions[i].info != ''){
+// 				school_string = school_string + ' (' + data.institutions[i].info + ')';
+// 			}
+// 			$("#institutions").append('<li><B>' + data.institutions[i].date + ':</B> ' + school_string + ', ' + data.institutions[i].department + '.</li>');
+// 		}
 
-		// courses
-		for (var i=0; i<data.courses.length; i++){
-			index_list = (i % 3) +1;
-			list_id = '#courses' + index_list;
-			$(list_id).append('<li>' + data.courses[i] + '</li>');
-		}
-	});
-});
+// 		// courses
+// 		for (var i=0; i<data.courses.length; i++){
+// 			index_list = (i % 3) +1;
+// 			list_id = '#courses' + index_list;
+// 			$(list_id).append('<li>' + data.courses[i] + '</li>');
+// 		}
+// 	});
+// });
 
 
 // Function to load demos from json
-$(document).ready(function(){
-	$.getJSON("jsons/demos.json", function(data){
-		for (var i=0; i<data.demos.length; i++){
-			$("#demos-content").append('<div"><h4 class="vertical-title-bar">' + data.demos[i].title + '</h4></div>');
-			$("#demos-content").append('<p class="text-justify">' + data.demos[i].description + '</p>');
-			div_demo = 'row_demo' + i;
-			$("#demos-content").append('<div id="' + div_demo + '" class="row justify-content-center align-items-center"></div');
-			$('#'+div_demo).append('<div class="col-md-5"><iframe loading="lazy" width="294" height="220" src="' + data.demos[i].video_src + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>');
-			if (data.demos[i].img_legend  != '') {
-				$('#'+div_demo).append('<div class="col-md-5"><img width="300rem" src="' + data.demos[i].img_legend + '"></div>');
-			}
-			$("#demos-content").append('<br><br>');
-		}
-	});
-});
+// $(document).ready(function(){
+// 	$.getJSON("jsons/demos.json", function(data){
+// 		for (var i=0; i<data.demos.length; i++){
+// 			$("#demos-content").append('<div"><h4 class="vertical-title-bar">' + data.demos[i].title + '</h4></div>');
+// 			$("#demos-content").append('<p class="text-justify">' + data.demos[i].description + '</p>');
+// 			div_demo = 'row_demo' + i;
+// 			$("#demos-content").append('<div id="' + div_demo + '" class="row justify-content-center align-items-center"></div');
+// 			$('#'+div_demo).append('<div class="col-md-5"><iframe loading="lazy" width="294" height="220" src="' + data.demos[i].video_src + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>');
+// 			if (data.demos[i].img_legend  != '') {
+// 				$('#'+div_demo).append('<div class="col-md-5"><img width="300rem" src="' + data.demos[i].img_legend + '"></div>');
+// 			}
+// 			$("#demos-content").append('<br><br>');
+// 		}
+// 	});
+// });
 
 // Function to read bib and display publications
 $(document).ready(function(){
