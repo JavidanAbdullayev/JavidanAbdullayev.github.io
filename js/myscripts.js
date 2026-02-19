@@ -373,7 +373,7 @@ $(document).ready(function(){
 $(document).ready(function(){
 	console.log('hereeeeeee')
 	$.get('publis/my_publis.bib', function(data) {
-   	res = bibtexParse.toJSON(data);
+   	res = bibTexParse.toJSON(data);
 	
 	cptIntArticle=0;
 	cptIntConf=0;
