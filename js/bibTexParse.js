@@ -353,6 +353,6 @@
 
     };
 
-})(typeof exports === 'undefined' ? this['bibtexParse'] = {} : exports);
+})(typeof exports === 'undefined' ? this['bibTexParse'] = {} : exports);
 
 /* end bibtexParse */
